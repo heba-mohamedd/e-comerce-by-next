@@ -3,6 +3,13 @@ import { ProductContext } from "@/app/_Components/Context/productContext";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "products",
+  description: "products oage",
+};
+
 interface Product {
   id: number;
   title: string;
