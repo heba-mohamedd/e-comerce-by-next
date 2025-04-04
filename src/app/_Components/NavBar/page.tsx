@@ -1,35 +1,52 @@
-"use client";
-import Link from "next/link";
 // import { Image } from 'next/image';
 import Logo from "./Logo";
-import { usePathname } from "next/navigation";
+import NavLink from "../NavLink";
+import { auth } from "@/util/auth";
+import Image from "next/image";
+import { console } from "inspector";
 
 const items = [
   { path: "/", pageName: "Home" },
   { path: "/products", pageName: "Products" },
-  { path: "/category", pageName: "Category" },
 ];
-function Navbar() {
-  let pathname = usePathname();
+async function Navbar() {
+  const session = await auth();
+  const nav = [...items];
+  if (session?.user) {
+    console.log(session.user);
+    nav.push({ path: "/profile", pageName: "Profile" });
+    nav.push({ path: "/cart", pageName: "Cart" });
+    nav.push({ path: "/api/auth/signout", pageName: "Logout" });
+  }
+  if (!session?.user) {
+    nav.push({ path: "/login", pageName: "Login" });
+  }
+
+  console.log(session);
   return (
     <header className="w-full bg-blue-950 z-20">
       <div className="container flex mx-auto justify-between items-center text-white">
         <Logo />
         <ul className="flex items-center gap-[30px] font-medium">
-          {items.map((item) => (
+          {nav.map((item) => (
             <li key={item.path}>
-              <Link
-                href={item.path}
-                className={
-                  pathname === item.path
-                    ? "text-teal-400"
-                    : "hover:text-teal-400 transition-colors text-white"
-                }
-              >
-                {item.pageName}
-              </Link>
+              <NavLink name={item.pageName} path={item.path} />
             </li>
           ))}
+
+          {session?.user ? (
+            <li>
+              <Image
+                src={`${session?.user?.image}`}
+                alt="icon"
+                width={50}
+                height={50}
+                className=" rounded-full"
+              />
+            </li>
+          ) : (
+            " "
+          )}
         </ul>
       </div>
     </header>

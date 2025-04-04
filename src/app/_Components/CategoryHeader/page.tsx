@@ -15,14 +15,14 @@ function Category() {
   return (
     <div className="container mx-auto bg-blue-900 font-medium rounded-3xl py-[20px]">
       <header>
-        <ul className=" flex justify-around text-amber-50 text-3xl">
+        <ul className=" flex justify-around text-amber-50 text-3xl flex-wrap flex-col md:flex-row">
           {categoryPages.map((item) => (
             <li key={item.path}>
               <Link
                 href={item.path}
                 className={
                   pathname.startsWith(item.path)
-                    ? "text-teal-400"
+                    ? "text-teal-400 py-2 underline"
                     : "hover:text-teal-400 transition-colors text-white"
                 }
               >
