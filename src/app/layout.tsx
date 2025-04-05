@@ -10,6 +10,7 @@ import NavWrapper from "./_Components/NavWrapper";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import Footer from "./_Components/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const josefin = Josefin_Sans({ subsets: ["latin"] });
 export default async function RootLayout({
@@ -22,23 +23,25 @@ export default async function RootLayout({
     return null;
   });
   return (
-    <html lang="en">
-      <body
-        className={
-          josefin.className +
-          " min-h-screen flex flex-col relative bg-gray-800 "
-        }
-      >
-        {/* <Navbar />
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={
+            josefin.className +
+            " min-h-screen flex flex-col relative bg-gray-800 "
+          }
+        >
+          {/* <Navbar />
         {children} */}
-        {/* <SessionProvider session={session}> */}
-        <NavWrapper session={session}>
-          <ToastContainer />
-          {children}
-        </NavWrapper>
-        {/* </SessionProvider> */}
-        <Footer />
-      </body>
-    </html>
+          <SessionProvider session={session}>
+            <NavWrapper session={session}>
+              <ToastContainer />
+              {children}
+            </NavWrapper>
+          </SessionProvider>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
