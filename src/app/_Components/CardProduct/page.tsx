@@ -3,16 +3,18 @@ import Image from "next/image";
 import React from "react";
 import AddToCartButton from "./../AddToCartButton";
 import Link from "next/link";
+import { auth } from "@/util/auth";
 interface Props {
   product: Product;
 }
 
-function CartProduct({ product }: Props) {
+async function CartProduct({ product }: Props) {
+  const session = await auth();
   return (
     product && (
       <div className="relative group">
         <div className="absolute top-2 right-2 z-10">
-          <AddToCartButton product={product} />
+          {session?.user && <AddToCartButton product={product} />}
         </div>
 
         <Link href={`products/${product.id}`}>

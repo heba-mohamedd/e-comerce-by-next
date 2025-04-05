@@ -9,6 +9,7 @@ import { auth } from "@/util/auth";
 import NavWrapper from "./_Components/NavWrapper";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
+import Footer from "./_Components/Footer";
 
 const josefin = Josefin_Sans({ subsets: ["latin"] });
 export default async function RootLayout({
@@ -28,13 +29,15 @@ export default async function RootLayout({
           " min-h-screen flex flex-col relative bg-gray-800 "
         }
       >
-        {/* <Navbar /> */}
-        <SessionProvider session={session}>
-          <NavWrapper session={session}>
-            <ToastContainer />
-            {children}
-          </NavWrapper>
-        </SessionProvider>
+        {/* <Navbar />
+        {children} */}
+        {/* <SessionProvider session={session}> */}
+        <NavWrapper session={session}>
+          <ToastContainer />
+          {children}
+        </NavWrapper>
+        {/* </SessionProvider> */}
+        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import ProductsList from "./_Components/ProductsList";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -8,41 +9,37 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <section className="bg-gradient-to-b from-[#1c2230] to-[#2a3445]">
+    <section className="flex-grow">
       <div className="container mx-auto px-4">
-        <div className="element-center flex-col pt-[150px]">
-          <div className="w-[750px] max-w-full">
+        <div className="flex flex-col items-center pt-[150px]">
+          <div className="w-full max-w-[750px]">
             <Image
-              src="/next.svg"
+              src="/ecommerce.webp"
               alt="Landing image"
               width={750}
               height={500}
-              className="h-fit w-full drop-shadow-lg"
+              className="h-fit w-full drop-shadow-lg rounded-lg"
             />
           </div>
-          <div className="text-white text-center mt-8">
-            <h1 className="text-[30px] md:text-[40px] mb-[15px] font-bold leading-tight">
-              All your files in one secure location,
+          <div className="text-blue-950 text-center mt-8">
+            <h1 className="text-[30px] md:text-[40px] mb-5 font-bold leading-tight">
+              All your favorite products, in one secure place,
               <br />
-              accessible anywhere.
+              accessible anytime, anywhere
             </h1>
-            <p className="font-light text-lg px-[15px] md:w-[600px] max-w-full mx-auto leading-relaxed">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla at
-              ea necessitatibus? Dicta nam rem vitae officiis placeat molestias
-              maiores quasi autem recusandae labore pariatur quo.
+            <p className="font-light text-lg px-4 md:w-[600px] max-w-full mx-auto leading-relaxed">
+              Discover a wide range of products tailored to your needs. Shop
+              with confidence, enjoy secure payments, and experience fast
+              delivery, all from the comfort of your home.
             </p>
           </div>
           <a
-            href="/"
-            className="btn w-[280px] h-[60px] rounded-[30px] element-center text-white mt-10 font-medium bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 shadow-lg transition-all duration-300"
+            href="/products"
+            className="btn w-[280px] h-[60px] rounded-[30px] flex items-center justify-center text-white mt-10 font-medium bg-gradient-to-r from-blue-950 to-purple-600 hover:from-purple-600 hover:to-blue-950 shadow-lg transition-all duration-300 mb-[50px]"
           >
-            Get Started
+            SHOP NOW
           </a>
         </div>
-      </div>
-      <div className="w-full h-[200px] mt-10">
-        {/* Add a decorative background or image */}
-        <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-20"></div>
       </div>
     </section>
   );

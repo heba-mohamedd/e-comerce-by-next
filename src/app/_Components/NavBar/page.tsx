@@ -11,6 +11,7 @@ const items = [
 ];
 async function Navbar() {
   const session = await auth();
+  console.log("Session:", session);
   const nav = [...items];
   if (session?.user) {
     console.log(session.user);

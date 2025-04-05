@@ -6,3 +6,8 @@ export async function signInAction() {
     redirectTo: "/profile",
   });
 }
+export async function signInFacebookAction() {
+  await signIn("facebook", {
+    redirectTo: "/profile",
+  });
+}
