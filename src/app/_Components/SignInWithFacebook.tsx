@@ -1,4 +1,3 @@
-"use client";
 import { signInFacebookAction } from "@/util/actions";
 
 function SignInWithFacebook() {

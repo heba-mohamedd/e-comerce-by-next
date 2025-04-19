@@ -11,11 +11,14 @@ export const metadata: Metadata = {
 
 export const revalidate = 15;
 interface Props {
-  searchParams: Promise<{ category: string }>;
+  searchParams: Promise<{ category?: string; search?: string }>;
 }
 export default async function Products({ searchParams }: Props) {
   const { category } = await searchParams;
   const filtereValue = category ?? "all";
+  const { search } = await searchParams;
+  const searchValue = search ?? "";
+
   console.log(filtereValue);
   return (
     <div className="bg-gray-50">
@@ -47,7 +50,7 @@ export default async function Products({ searchParams }: Props) {
             </div>
           }
         >
-          <ProductsList filtereValue={filtereValue} />
+          <ProductsList filtereValue={filtereValue} searchValue={searchValue} />
         </Suspense>
       </div>
     </div>

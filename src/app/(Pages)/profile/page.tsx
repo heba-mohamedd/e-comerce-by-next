@@ -1,11 +1,14 @@
 import LogOutButton from "@/app/_Components/LogOutButton";
 import { auth } from "@/util/auth";
+import { getToken } from "next-auth/jwt";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
 async function ProfilePage() {
   const session = await auth();
+
+  // console.log(session?.user?.id);
   if (!session) {
     return (
       <div className="flex items-center justify-center min-h-screen p-6">

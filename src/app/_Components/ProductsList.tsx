@@ -6,8 +6,9 @@ import AddToCartButton from "./AddToCartButton";
 
 interface Props {
   filtereValue: string;
+  searchValue: string;
 }
-async function ProductsList({ filtereValue }: Props) {
+async function ProductsList({ filtereValue, searchValue }: Props) {
   const response = await fetch("https://fakestoreapi.com/products");
   const products: Product[] = await response.json();
 
@@ -30,9 +31,13 @@ async function ProductsList({ filtereValue }: Props) {
       (product) => product.category === "women's clothing"
     );
 
+  const searched = filterProducts.filter((item) =>
+    item.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      {filterProducts?.map((product: Product) => (
+      {searched?.map((product: Product) => (
         <div key={product.id} className=" relative">
           <CardProduct product={product} />
         </div>

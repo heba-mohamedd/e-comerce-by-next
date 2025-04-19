@@ -1,4 +1,3 @@
-"use client";
 import { signInAction } from "@/util/actions";
 
 function SignInButton() {

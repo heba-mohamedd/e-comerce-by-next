@@ -14,6 +14,21 @@ const authConfig = {
     }),
   ],
   callbacks: {
+    async jwt({ token, account }: { token: any; account: any }) {
+      // When the user signs in, the account object contains provider-specific data
+      if (account) {
+        token.provider = account.provider; // e.g., "google" or "facebook"
+        token.providerId =
+          account.provider === "google" ? account.sub : account.id; // Google uses sub, Facebook uses id
+      }
+      return token;
+    },
+    async session({ session, token }: { session: any; token: any }) {
+      // Pass the provider ID to the session object
+      session.provider = token.provider;
+      session.providerId = token.providerId;
+      return session;
+    },
     authorized({ auth, request }: { auth: any; request: any }) {
       return !!auth?.user;
     },
@@ -26,5 +41,6 @@ const authConfig = {
 export const {
   auth,
   signIn,
+  signOut,
   handlers: { GET, POST },
 } = NextAuth(authConfig);

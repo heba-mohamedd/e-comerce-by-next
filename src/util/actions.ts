@@ -1,5 +1,5 @@
 "use server";
-import { signIn } from "./auth";
+import { signIn, signOut } from "./auth";
 
 export async function signInAction() {
   await signIn("google", {
@@ -10,4 +10,8 @@ export async function signInFacebookAction() {
   await signIn("facebook", {
     redirectTo: "/profile",
   });
+}
+
+export async function signOutAction() {
+  await signOut({ redirectTo: "/" });
 }

@@ -7,6 +7,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { Provider, useSelector } from "react-redux";
 import { RootState, store } from "@/lib/store";
 import ShoppingCart from "./ShoppingCart";
+import SearchDropdown from "./SearchDropDown";
 
 const queryClient = new QueryClient();
 
@@ -24,8 +25,8 @@ export default function InnerLayout({
   session: any;
 }) {
   const nav = [...items];
-  if (session?.user)
-    nav.push({ pageName: "Logout", path: "/api/auth/signout" });
+  // if (session?.user)
+  //   nav.push({ pageName: "Logout", path: "/api/auth/signout" });
 
   if (!session?.user) nav.push({ pageName: "Login", path: "/login" });
 
@@ -56,6 +57,7 @@ export default function InnerLayout({
           </nav>
 
           <div className="flex items-center space-x-4">
+            <SearchDropdown />
             {session?.user?.image && (
               <Link href="/profile">
                 <Image

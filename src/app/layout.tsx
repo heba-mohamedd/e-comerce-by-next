@@ -23,25 +23,25 @@ export default async function RootLayout({
     return null;
   });
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body
-          className={
-            josefin.className +
-            " min-h-screen flex flex-col relative bg-gray-800 "
-          }
-        >
-          {/* <Navbar />
+    // <ClerkProvider>
+    <html lang="en">
+      <body
+        className={
+          josefin.className +
+          " min-h-screen flex flex-col relative bg-gray-800 "
+        }
+      >
+        {/* <Navbar />
         {children} */}
-          <SessionProvider session={session}>
-            <NavWrapper session={session}>
-              <ToastContainer />
-              {children}
-            </NavWrapper>
-          </SessionProvider>
-          <Footer />
-        </body>
-      </html>
-    </ClerkProvider>
+        <SessionProvider session={session}>
+          <NavWrapper session={session}>
+            <ToastContainer />
+            {children}
+          </NavWrapper>
+        </SessionProvider>
+        <Footer />
+      </body>
+    </html>
+    // </ClerkProvider>
   );
 }
